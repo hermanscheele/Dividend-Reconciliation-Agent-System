@@ -1,7 +1,7 @@
 import sys, threading, time, itertools
 import pandas as pd
 import json
-import math
+
 
 
 
@@ -24,6 +24,10 @@ def load_dividend_events(path):
 
 
 
+
+def write_json_file(data, agent):
+    with open(f'agent_output/{agent}_output.json', 'w') as f:
+        json.dump(data, f, indent=2)
 
 
 
@@ -111,6 +115,22 @@ def spinner(message="Working..."):
 
 
 
+def parse_json_output(x: str):
+    if not isinstance(x, str) or not x.strip():
+        return {"error": "empty_or_non_string_response", "raw": x}
+    # try direct
+    try:
+        return json.loads(x)
+    except Exception:
+        pass
+    # try to salvage first {...} block
+    s, e = x.find("{"), x.rfind("}")
+    if s != -1 and e > s:
+        try:
+            return json.loads(x[s:e+1])
+        except Exception:
+            pass
+    return {"error": "invalid_json", "raw": x[:500]}
 
 
 

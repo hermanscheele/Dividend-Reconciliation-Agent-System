@@ -1,0 +1,196 @@
+{
+  "policy_evaluation": [
+    {
+      "break_id": 1,
+      "event_key": 960789012,
+      "policy_basis": [
+        {
+          "source": "FX",
+          "section": null,
+          "rule_summary": "Use FX rate from highest priority source (Treasury, WM/Refinitiv, ECB) as-of payment date.",
+          "priority": "primary"
+        }
+      ],
+      "expected_treatment": {
+        "tax_rate": null,
+        "fx_source": "NBIM Treasury",
+        "business_day_rule": "next",
+        "other": null
+      },
+      "compliance": false,
+      "compliance_reason": "The net amount discrepancy suggests FX miscalculation, indicating non-compliance with FX policy.",
+      "missing_policy_data": [],
+      "citations": [
+        {
+          "source": "FX",
+          "section": null
+        }
+      ],
+      "confidence": 0.9
+    },
+    {
+      "break_id": 2,
+      "event_key": 960789012,
+      "policy_basis": [
+        {
+          "source": "WHT",
+          "section": null,
+          "rule_summary": "Apply treaty WHT rate if eligible; otherwise, apply statutory domestic WHT rate.",
+          "priority": "primary"
+        }
+      ],
+      "expected_treatment": {
+        "tax_rate": "22%",
+        "fx_source": null,
+        "business_day_rule": null,
+        "other": null
+      },
+      "compliance": false,
+      "compliance_reason": "The tax amount discrepancy indicates incorrect application of tax rate or calculation, violating policy.",
+      "missing_policy_data": [],
+      "citations": [
+        {
+          "source": "WHT",
+          "section": null
+        }
+      ],
+      "confidence": 0.9
+    },
+    {
+      "break_id": 3,
+      "event_key": 960789012,
+      "policy_basis": [
+        {
+          "source": "DATES",
+          "section": null,
+          "rule_summary": "Match ex-date, record date, and payment date with custodian; adjust for market holidays or ADR calendar rules if applicable.",
+          "priority": "primary"
+        }
+      ],
+      "expected_treatment": {
+        "tax_rate": null,
+        "fx_source": null,
+        "business_day_rule": "next",
+        "other": null
+      },
+      "compliance": false,
+      "compliance_reason": "The payment date mismatch suggests timing non-compliance with date matching policy.",
+      "missing_policy_data": [],
+      "citations": [
+        {
+          "source": "DATES",
+          "section": null
+        }
+      ],
+      "confidence": 0.8
+    },
+    {
+      "break_id": 4,
+      "event_key": 970456789,
+      "policy_basis": [
+        {
+          "source": "DATA_QUALITY",
+          "section": null,
+          "rule_summary": "Review original transaction records for accuracy; update nominal values where discrepancies are found.",
+          "priority": "secondary"
+        }
+      ],
+      "expected_treatment": {
+        "tax_rate": null,
+        "fx_source": null,
+        "business_day_rule": null,
+        "other": null
+      },
+      "compliance": "uncertain",
+      "compliance_reason": "Missing explicit policy reference for nominal mismatch; likely data entry error.",
+      "missing_policy_data": [
+        "Data entry validation policy"
+      ],
+      "citations": [],
+      "confidence": 0.5
+    },
+    {
+      "break_id": 5,
+      "event_key": 970456789,
+      "policy_basis": [
+        {
+          "source": "DATA_QUALITY",
+          "section": null,
+          "rule_summary": "Audit gross amount calculations in custody and NBIM systems; correct any identified data entry errors.",
+          "priority": "secondary"
+        }
+      ],
+      "expected_treatment": {
+        "tax_rate": null,
+        "fx_source": null,
+        "business_day_rule": null,
+        "other": null
+      },
+      "compliance": "uncertain",
+      "compliance_reason": "No explicit policy reference for gross amount discrepancies; likely data quality issue.",
+      "missing_policy_data": [
+        "Calculation consistency policy"
+      ],
+      "citations": [],
+      "confidence": 0.5
+    },
+    {
+      "break_id": 6,
+      "event_key": 970456789,
+      "policy_basis": [
+        {
+          "source": "DATA_QUALITY",
+          "section": null,
+          "rule_summary": "Check calculation consistency for net amounts; harmonize system rounding rules.",
+          "priority": "secondary"
+        }
+      ],
+      "expected_treatment": {
+        "tax_rate": null,
+        "fx_source": null,
+        "business_day_rule": null,
+        "other": null
+      },
+      "compliance": "uncertain",
+      "compliance_reason": "No explicit policy reference for net amount discrepancies; likely data quality issue.",
+      "missing_policy_data": [
+        "Calculation validation policy"
+      ],
+      "citations": [],
+      "confidence": 0.5
+    },
+    {
+      "break_id": 7,
+      "event_key": 970456789,
+      "policy_basis": [
+        {
+          "source": "WHT",
+          "section": null,
+          "rule_summary": "Review detailed tax calculation entries; validate consistency of tax rates and rounding procedures.",
+          "priority": "secondary"
+        }
+      ],
+      "expected_treatment": {
+        "tax_rate": "35%",
+        "fx_source": null,
+        "business_day_rule": null,
+        "other": null
+      },
+      "compliance": "uncertain",
+      "compliance_reason": "No explicit policy reference for tax discrepancy; likely calculation or rounding error.",
+      "missing_policy_data": [
+        "Tax calculation procedures"
+      ],
+      "citations": [],
+      "confidence": 0.5
+    }
+  ],
+  "summary": {
+    "policy_confirmed_count": 0,
+    "policy_breach_count": 3,
+    "uncertain_count": 4,
+    "notes": [
+      "FX rate application and tax calculation discrepancies are primary concerns; data quality issues are secondary."
+    ]
+  }
+}

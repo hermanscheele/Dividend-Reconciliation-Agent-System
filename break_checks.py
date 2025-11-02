@@ -2,11 +2,7 @@ import pandas as pd
 
 
 def detect_breaks(nbim_file, custody_file, tolerance=0.01):
-    """
-    Detect breaks between custody and NBIM CSV files.
-    
-    Returns: dict with breaks
-    """
+
     
     # Load files
     custody = pd.read_csv(custody_file, delimiter=';', encoding='utf-8-sig')
