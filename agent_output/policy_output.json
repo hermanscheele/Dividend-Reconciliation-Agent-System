@@ -1,0 +1,47 @@
+{
+  "policy_violations": [
+    {
+      "break_id": 1,
+      "break_type": "NET_AMOUNT",
+      "violation": true,
+      "reason": "The custody amount (7,220,000) exceeds the NBIM amount (6,769,950) by 450,050, which indicates possible custodian reporting error. According to policy, discrepancies should be reviewed with the custodian. This appears to violate data consistency and quality standards before reconciliation."
+    },
+    {
+      "break_id": 2,
+      "break_type": "TAX",
+      "violation": true,
+      "reason": "Custodian reported a custody tax of 1,805,000 at 20%, whereas market standards recommend 22% for non-residents, and NBIM reflects 1,985,500 at 22%. This rate discrepancy breaches WHT application policy, suggesting incorrect tax rate application."
+    },
+    {
+      "break_id": 3,
+      "break_type": "PAY_DATE",
+      "violation": false,
+      "reason": "The difference in pay date (~20 May vs. 25 May) is within the allowable tolerance (+/- 1 business day) and aligns with external disclosures, thus not a policy violation."
+    },
+    {
+      "break_id": 4,
+      "break_type": "NOMINAL_MISMATCH",
+      "violation": true,
+      "reason": "The internal NBIM record shows a custody value of 15,000, whereas external data indicates 30,000, a 15,000 difference. This constitutes a data quality violation, as internal data does not match authoritative external sources."
+    },
+    {
+      "break_id": 5,
+      "break_type": "GROSS_AMOUNT",
+      "violation": true,
+      "reason": "NBIM's gross amount exceeds external dividend data by 6,200, indicating a calculation error or misapplication of dividend assumptions, violating policy regarding accurate gross dividend reporting."
+    },
+    {
+      "break_id": 6,
+      "break_type": "NET_AMOUNT",
+      "violation": true,
+      "reason": "The net amount discrepancy (24,180 vs. 20,150) and the tax difference suggest internal calculation errors inconsistent with external authoritative data, violating internal accuracy policies."
+    },
+    {
+      "break_id": 7,
+      "break_type": "TAX",
+      "violation": false,
+      "reason": "Reported tax rate of 35% matches Swiss standards and aligns with external data, within acceptable tolerances, thus not a violation."
+    }
+  ],
+  "overall_assessment": "Primary violations stem from data quality issues and incorrect custodian reporting (Breaks 1, 2, 4). These must be escalated and addressed promptly to ensure compliance with NBIM policies, particularly regarding custody data integrity and withholding tax accuracy. Internal calculation errors (Breaks 5, 6) also require correction to meet policy standards for accurate dividend and tax reporting."
+}

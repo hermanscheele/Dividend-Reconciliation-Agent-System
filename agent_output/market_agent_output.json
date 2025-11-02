@@ -1,0 +1,89 @@
+[
+  {
+    "break_id": 1,
+    "issuer_country": "South Korea",
+    "custodian": "CUST/HSBCKR",
+    "public_info_summary": "For South Korean\u2010source dividends, the normal withholding tax is 15.4\u202f% (14\u202f% national +\u202f1.4\u202f% residence surtax) on dividends paid to residents; for non\u2011residents or foreign investors, standard withholding is 22\u202f% (20\u202f% national +\u202f2\u202f% local surtax) unless reduced by tax treaty",
+    "likely_source": "external",
+    "reason": "The dividend timing and break type NET_AMOUNT align with standard South Korean market settlement and tax withholding practices rather than an internal error",
+    "sources": [
+      "https://taxsummaries.pwc.com/republic-of-korea/individual/income-determination",
+      "https://practiceguides.chambers.com/practice-guides/equity-finance-2024/south-korea"
+    ]
+  },
+  {
+    "break_id": 2,
+    "issuer_country": "South Korea",
+    "custodian": "CUST/HSBCKR",
+    "public_info_summary": "Samsung Electronics Co Ltd (ISIN KR7005930003) regularly issues quarterly dividends; 2025 ex\u2011date was 28\u202fMarch\u202f2025 and pay\u2011date around 20\u202fMay\u202f2025; dividends to non\u2011residents are generally subject to 22\u202f% withholding tax (including local tax), unless reduced by treaty, otherwise 15.4\u202f% for residents.",
+    "likely_source": "external",
+    "reason": "The timing and tax treatment align with standard South Korean market practice for dividends to non\u2011residents.",
+    "sources": [
+      "https://divvydiary.com/en/samsung-electronics-co-stock-KR7005930003",
+      "https://www.mkif.com/en/investor-centre/faqs.html"
+    ]
+  },
+  {
+    "break_id": 3,
+    "issuer_country": "South Korea",
+    "custodian": "CUST/HSBCKR",
+    "public_info_summary": "Samsung Electronics (ISIN KR7005930003) declared a Q1 2025 dividend of KRW\u202f365 per share, with ex\u2011dividend date March\u202f28\u202f2025, record date March\u202f31\u202f2025, and scheduled payment date May\u202f20\u202f2025. South Korean withholding tax on dividends for resident individuals is 15.4% (inclusive of local tax); for non\u2011residents or foreign corporates the standard rate is 22% (inclusive of local tax), unless a tax treaty provides a lower rate.",
+    "likely_source": "external",
+    "reason": "The pay\u2011date on May\u202f20\u202f2025 is consistent with South Korean market standard rather than a custodian or internal error.",
+    "sources": [
+      "https://www.samsung.com/global/ir/reports-disclosures/public-disclosure-view.84356/",
+      "https://www.marketscreener.com/quote/stock/SAMSUNG-ELECTRONICS-CO-LT-6494906/news/Samsung-Electronics-Co-Ltd-announces-Quarterly-dividend-payable-on-May-20-2025-49098771/",
+      "https://www.mkif.com/en/investor-centre/faqs.html",
+      "https://taxsummaries.pwc.com/republic-of-korea/individual/income-determination"
+    ]
+  },
+  {
+    "break_id": 4,
+    "issuer_country": "Switzerland",
+    "custodian": "CUST/UBSCH",
+    "public_info_summary": "Nestl\u00e9 SA (ISIN CH0038863350) paid a dividend in April 2025 with an ex\u2011dividend date of April\u202f22 or 17 depending on source, payable in late April; Swiss withholding tax on dividends is 35\u202f% at source (refundable to Swiss residents) and partial taxation rules (70\u202f% federally, 50\u201380\u202f% cantonal) apply for significant participations.",
+    "likely_source": "external",
+    "reason": "The timing and nominal mismatch align with standard Swiss market conventions and withholding practices, not an internal NBIM error.",
+    "sources": [
+      "https://www.divvydiary.com/en/nestle-stock-CH0038863350",
+      "https://www.alpian.com/blog/investing/taxation-of-dividends"
+    ]
+  },
+  {
+    "break_id": 5,
+    "issuer_country": "Switzerland",
+    "custodian": "CUST/UBSCH",
+    "public_info_summary": "Nestl\u00e9 (ISIN\u202fCH0038863350) paid an ordinary dividend of CHF\u202f3.05 gross with ex\u2011date 22\u202fApril\u202f2025 and pay\u2011date 24\u202fApril\u202f2025; Swiss standard withholding tax is 35\u202f%, refundable upon correct declaration.",
+    "likely_source": "external",
+    "reason": "The dates and dividend amount match standard Swiss market practice rather than an internal error.",
+    "sources": [
+      "https://www.schwiizerfranke.com/en/dividendenkalender-schweiz/",
+      "https://divvydiary.com/en/nestle-stock-CH0038863350"
+    ]
+  },
+  {
+    "break_id": 6,
+    "issuer_country": "Switzerland",
+    "custodian": "CUST/UBSCH",
+    "public_info_summary": "Nestl\u00e9 SA (ISIN CH0038863350) paid an ordinary dividend of CHF\u202f3.05 gross with ex\u2011date 22 April 2025 and typical pay\u2011date 24 April 2025; Swiss standard withholding (Verrechnungssteuer) is 35\u202f%, which is withheld and reclaimable by the shareholder; ex\u2011date of 25.04.2025 and pay\u2011date of 29.04.2025 diverge from the standard and suggest a timing error.",
+    "likely_source": "internal",
+    "reason": "The dividend dates deviate from the standard Zurich schedule, indicating an internal timing or data error rather than market practice.",
+    "sources": [
+      "https://globaltaxrecovery.com/nestle-sa/",
+      "https://www.schwiizerfranke.com/en/dividendenkalender-schweiz/"
+    ]
+  },
+  {
+    "break_id": 7,
+    "issuer_country": "Switzerland",
+    "custodian": "CUST/UBSCH",
+    "public_info_summary": "Nestl\u00e9 (ISIN CH0038863350) pays an annual dividend, with an ex\u2011dividend date of 22 April 2025 and payment on 24 April 2025; Swiss withholding tax standard is 35\u202f% on dividends, credited in Swiss tax filings under market practice.",
+    "likely_source": "external",
+    "reason": "The timing and tax treatment align with standard Swiss dividend market practices rather than an internal error.",
+    "sources": [
+      "https://divvydiary.com/en/nestle-stock-CH0038863350",
+      "https://globaltaxrecovery.com/nestle-sa/",
+      "https://www.askswitzerland.com/dividend-taxation-in-switzerland/"
+    ]
+  }
+]

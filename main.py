@@ -9,103 +9,158 @@ from dividend_policy import POLICY_TEXT
 from prompts import BASE_SYSTEM_PROMPT, BREAK_DIAGNOSIS_PROMPT, POLICY_AGENT_PROMPT
 
 
-nbim_books = "data/NBIM_Dividend_Bookings 1 (2).csv"
-custody_books = "data/CUSTODY_Dividend_Bookings 1 (2).csv"
 
-
-break_model = "gpt-4.1-nano"
 
 
 client = OpenAI()
 
 
+# ============================================================================
+# STEP 1: MARKET VALIDATION (Get external facts FIRST)
+# ============================================================================
 
-def break_diagnozer_agent(internal, custodian, model):
 
-    nbim_json = load_dividend_events(nbim_books)
-    custody_json = load_dividend_events(custody_books)
+def market_validation_agent(breaks, model):
 
-    breaks = detect_breaks(internal, custodian)["breaks"]
+    results = []
+    
+    for i, brk in enumerate(breaks, 1):
+        
+        # Get country from ISIN
+        isin = brk.get('isin', '')
+        country_map = {
+            'KR': 'South Korea', 'CH': 'Switzerland', 'US': 'United States',
+            'GB': 'United Kingdom', 'JP': 'Japan', 'DE': 'Germany', 'FR': 'France'
+        }
+        country = country_map.get(isin[:2], isin[:2]) if len(isin) >= 2 else 'Unknown'
+        
+        # Simple query
+        query = f"""
+            Search public sources for market standards regarding:
 
+            ISIN: {isin}
+            Country: {country}
+            Custodian: {brk.get('custodian')}
+            Break type: {brk.get('type')}
+            Ex-date: {brk.get('ex_date')}
+            Pay-date: {brk.get('pay_date')}
+
+            Find official dividend details, tax rates, and payment dates.
+
+            Determine: Is this break due to "internal" (NBIM error) or "external" (standard market practice)?
+
+            IMPORTANT: In the "sources" field, include the actual HTTPS URLs of the websites you found, not search references.
+
+            Return ONLY this JSON (no markdown, no explanations):
+            {{
+                "break_id": {i},
+                "issuer_country": "{country}",
+                "custodian": "{brk.get('custodian')}",
+                "public_info_summary": "<short summary of market standard>",
+                "likely_source": "internal|external|uncertain",
+                "reason": "<one sentence why>",
+                "sources": ["https://example.com/page1", "https://example.com/page2"]
+            }}
+            """
+        
+        stop = spinner(f"Market research for break: {i}/{len(breaks)}...")
+        response = client.responses.create(
+            model=model,
+            tools=[{"type": "web_search"}],
+            input=query
+        )
+        stop()
+        
+        # Parse response
+        try:
+            parsed = json.loads(response.output_text)
+        except:
+            parsed = {"break_id": i, "error": "parse_error", "raw": response.output_text}
+        
+        results.append(parsed)
+    
+    write_json_file(results, "market_agent")
+    return results
+
+
+
+
+# ============================================================================
+# STEP 3: DIAGNOSIS (Using market facts)
+# ============================================================================
+
+def break_diagnosis_agent(breaks, market_validation, model):
+  
+    
     user_msg = f"""
-        Breaks detected: {breaks}, 
+        You are diagnosing dividend reconciliation breaks.
 
-        NBIM: {nbim_json}, 
-        CUSTODY: {custody_json},
+        BREAKS DETECTED:
+        {json.dumps(breaks, indent=2)}
+
+        MARKET VALIDATION RESULTS (verified external facts):
+        {json.dumps(market_validation, indent=2)}
 
         {BREAK_DIAGNOSIS_PROMPT}
         """
     
-
-    # API
-    stop = spinner("Diagnosing breaks...")
+    stop = spinner(f"🔬 Diagnosing {len(breaks)} breaks with market facts...")
     response = client.chat.completions.create(
         model=model,
-        # max_tokens=1000
         messages=[
-            {"role":"system","content":BASE_SYSTEM_PROMPT},
-            {"role":"user","content":user_msg}
-        ]
-    ).choices[0].message.content
+            {"role": "system", "content": "You are a financial reconciliation expert."},
+            {"role": "user", "content": user_msg}
+        ],
+        response_format={"type": "json_object"}
+    )
     stop()
 
-
-    result = json.loads(response)
-    write_json_file(result, "break_agent")
+    result = json.loads(response.choices[0].message.content)
     
-    try:
-        return result
-    except:
-        return {"kind":"error", "raw": response}
+    diagnosed_count = len(result.get('diagnosis', []))
+    print(f"✓ Diagnosed {diagnosed_count}/{len(breaks)} breaks")
     
+    if diagnosed_count != len(breaks):
+        print(f"⚠️  Warning: Missing {len(breaks) - diagnosed_count} diagnoses")
+    
+    write_json_file(result, "break")
+    return result
 
 
 
+# ============================================================================
+# STEP 4: POLICY CHECK
+# ============================================================================
 
+def policy_agent(breaks, diagnosis, policy_text, model):
 
-def policy_agent(breaks, break_diagnosis, policy_text, model):
+    user_msg = f"""
+        Check if these breaks and their diagnoses violate any policies:
 
-    policy_context = contextualize_policy_text(policy_text)
-    print(policy_context)
-    payload = {
-            "BREAKS": breaks,
-            "BREAK_DIAGNOSIS": break_diagnosis,
-            "POLICY_CONTEXT": policy_context
-        }
+        BREAKS: {json.dumps(breaks, indent=2)}
+        DIAGNOSIS: {json.dumps(diagnosis, indent=2)}
+        POLICY: {policy_text}
 
-    usr_msg = f"""
-        {POLICY_AGENT_PROMPT}, 
-        Evaluate policy for these inputs (JSON only):
-        {json.dumps(payload, default=str)}
+        Return JSON with policy violations.
         """
     
-    stop = spinner("Checking Policy...")
+    stop = spinner("📋 Checking policy compliance...")
     response = client.chat.completions.create(
         model=model,
-        temperature=0.0,
-        #max_tokens=600,
         messages=[
-            {"role": "system", "content": BASE_SYSTEM_PROMPT},
-            {"role": "user", "content": usr_msg}
-        ]
-    ).choices[0].message.content
+            {"role": "system", "content": "You are a policy compliance expert."},
+            {"role": "user", "content": user_msg}
+        ],
+        response_format={"type": "json_object"}
+    )
     stop()
 
+    result = json.loads(response.choices[0].message.content)
+    print("✓ Policy check complete")
     
-    result = json.loads(response)
-    write_json_file(result, "policy_agent")
-    
-    try:
-        return result
-    except:
-        return {"kind":"error", "raw": response}
-    
+    write_json_file(result, "policy")
 
-
-
-
-def tax_and_market_agent():
-    return 0
+    return result
 
 
 
@@ -114,8 +169,23 @@ def tax_and_market_agent():
 
 
 
-breaks = detect_breaks(nbim_books, custody_books)["breaks"]
-diag = break_diagnozer_agent(nbim_books, custody_books, break_model)
-p = policy_agent(breaks, diag, POLICY_TEXT, break_model)
+
+
+
+
+
+
+
+nbim_file = "data/NBIM_Dividend_Bookings 1 (2).csv"
+custody_file = "data/CUSTODY_Dividend_Bookings 1 (2).csv"
+
+
+
+
+breaks = detect_breaks(nbim_file, custody_file)["breaks"]
+print(breaks)
+market_facts = market_validation_agent(breaks, model="gpt-4o")
+diagnosis = break_diagnosis_agent(breaks, market_facts, model="gpt-4.1-nano")
+policy_result = policy_agent(breaks, diagnosis, POLICY_TEXT, model="gpt-4.1-nano")
 
 
