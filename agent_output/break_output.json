@@ -3,7 +3,7 @@
     {
       "break_id": 1,
       "break_type": "NET_AMOUNT",
-      "event_key": "960789012",
+      "event_key": 960789012,
       "isin": "KR7005930003",
       "custodian": "CUST/HSBCKR",
       "ex_date": "31.03.2025",
@@ -12,21 +12,21 @@
       "source": "external_custodian_error",
       "class": "data_quality",
       "which_system_is_wrong": "CUSTODY",
-      "reasoning": "The custody amount (7,220,000) exceeds the NBIM amount (6,769,950) by 450,050, indicating the custodian likely reported a higher amount. Market validation confirms typical dividend scheduling and withholding practices in South Korea, which supports custodian data as more accurate at this stage. The discrepancy suggests incorrect custodian reporting or data entry.",
+      "reasoning": "The custody amount (7,220,000) exceeds the NBIM amount (6,769,950) by 450,050, indicating possible custodian overstatement or data entry error. The market validation indicates standard payout timing and amounts for Samsung Electronics, suggesting the external custodian's reported custody amount may be inaccurate.",
       "next_steps": [
-        "Validate the custody amount with the custodian bank and obtain detailed transaction records.",
-        "Compare the custody report with actual dividend declarations and confirmations.",
-        "Communicate directly with the custodian to correct the reported custody amount if found erroneous."
+        "Verify the custodian\u2019s original payout confirmation and supporting transaction documentation.",
+        "Cross-check with market and dividend calendar sources to confirm expected payout amount.",
+        "Engage custodian to clarify and correct the custody amount data."
       ],
-      "potential_impact": "Material overstatement of custody dividend, leading to potential misstatement of holdings or dividend income in the financial reports.",
-      "suggested_owner": "Reconciliation Team / Custodian Contact Point",
+      "potential_impact": "Misstatement of dividend payout could lead to incorrect client reporting and financial misstatements.",
+      "suggested_owner": "Reconciliation Team / Data Quality Team",
       "custodian_escalation_needed": true,
-      "urgency_note": "Given the high discrepancy, resolve within the current reporting cycle to prevent misstatements."
+      "urgency_note": "Given the potential for material discrepancy, review should be prioritized."
     },
     {
       "break_id": 2,
       "break_type": "TAX",
-      "event_key": "960789012",
+      "event_key": 960789012,
       "isin": "KR7005930003",
       "custodian": "CUST/HSBCKR",
       "ex_date": "31.03.2025",
@@ -35,21 +35,21 @@
       "source": "external_custodian_error",
       "class": "data_quality",
       "which_system_is_wrong": "CUSTODY",
-      "reasoning": "Custodian reported a custody tax of 1,805,000 with a rate of 20%, whereas NBIM's tax was 1,985,500 at 22%. Market information indicates South Korea's standard withholding tax is approximately 22%, aligning more closely with NBIM data. The custodian's lower tax rate suggests incorrect tax rate application, which indicates an external error.",
+      "reasoning": "Custodian reports custody_tax as 1,805,000 with a 20% rate, while NBIM records 1,985,500 with 22%. The market data confirms that South Korean non-resident withholding tax is approximately 20-22%. The custodian likely applied an incorrect rate or reported wrong tax amounts, indicating an external data issue.",
       "next_steps": [
-        "Verify the applicable withholding tax rate per South Korean market standards for this dividend.",
-        "Coordinate with the custodian to correct the tax rate used in their reporting.",
-        "Update systems and recalculate tax amounts once corrected information is received."
+        "Consult with the custodian to verify the source document for reported tax amounts and rates.",
+        "Review official tax rate schedules and treaty provisions to determine the correct tax percentage.",
+        "Update NBIM records with the verified correct tax data once confirmed."
       ],
-      "potential_impact": "Incorrect tax reporting affecting dividend net amounts, potentially leading to tax compliance issues or misstated income figures.",
-      "suggested_owner": "Tax & Reconciliation Teams / Custodian Liaison",
+      "potential_impact": "Incorrect tax reporting may affect tax reclaim processes and client tax reporting accuracy.",
+      "suggested_owner": "Tax and Reconciliation Team",
       "custodian_escalation_needed": true,
-      "urgency_note": "High impact on tax accuracy; resolve before dividend payment settlement."
+      "urgency_note": "Immediate review recommended due to the tax impact on final dividend calculation."
     },
     {
       "break_id": 3,
       "break_type": "PAY_DATE",
-      "event_key": "960789012",
+      "event_key": 960789012,
       "isin": "KR7005930003",
       "custodian": "CUST/HSBCKR",
       "ex_date": "31.03.2025",
@@ -58,44 +58,44 @@
       "source": "unclear",
       "class": "timing_issue",
       "which_system_is_wrong": "UNCLEAR",
-      "reasoning": "Market validation confirms the official pay date as around May 20, 2025, but custodian shows May 25, 2025. This date discrepancy is typical of market reporting variance or internal processing delays rather than an error. Lack of definitive public source makes it ambiguous if this is a custodian error or timing mismatch.",
+      "reasoning": "The external market validation indicates a typical pay date around 20 May 2025 for Samsung Electronics, while custodian data shows 25 May 2025. This discrepancy could be due to market timing mores or internal reporting practices. More investigation is needed to determine which date aligns with official corporate action announcements.",
       "next_steps": [
-        "Consult with the custodian for confirmation of the official dividend payment date.",
-        "Check official company announcements and market data for precise pay date.",
-        "Align internal systems date to confirmed corporate action date to prevent future mismatches."
+        "Check official corporate action notices and announcements for the correct pay date.",
+        "Communicate with custodian to confirm their reported pay date.",
+        "Align internal records based on verified official sources."
       ],
-      "potential_impact": "Minor timing discrepancy with negligible financial impact but important for record accuracy.",
-      "suggested_owner": "Data & Market Validation Team",
+      "potential_impact": "Minor, primarily timing mismatches for reporting purposes.",
+      "suggested_owner": "Corporate Actions & Data Validation Team",
       "custodian_escalation_needed": false,
-      "urgency_note": "Time sensitivity is low; confirm dates in upcoming reconciliation."
+      "urgency_note": "No immediate action, monitor for timing consistency."
     },
     {
       "break_id": 4,
       "break_type": "NOMINAL_MISMATCH",
-      "event_key": "970456789",
+      "event_key": 970456789,
       "isin": "CH0038863350",
       "custodian": "CUST/UBSCH",
       "ex_date": "25.04.2025",
       "pay_date": "29.04.2025",
-      "severity": "CRITICAL",
+      "severity": "MEDIUM",
       "source": "internal_nbim_error",
       "class": "data_quality",
       "which_system_is_wrong": "NBIM",
-      "reasoning": "The custody value (30,000) vs NBIM value (15,000) differs by 15,000, indicating an internal position data error. Market info indicates Nestl\u00e9\u2019s ex-date was April 17, 2025, with payment on April 20, 2025, inconsistent with the internal date and value. This strongly suggests a position misentry or update lag in NBIM system.",
+      "reasoning": "Custodian reports a custody_value of 15,000, while NBIM shows 30,000, indicating an internal position data error. This mismatch points to incorrect internal data entry or processing within NBIM\u2019s records.",
       "next_steps": [
-        "Conduct a data review on the position entries for this security leading up to the dividend date.",
-        "Correct the position record in NBIM and verify it against broker/transaction data.",
-        "Implement controls to prevent future nominal mismatches for similar securities."
+        "Review position entry and transaction history in NBIM for this security around the dividend date.",
+        "Verify external custody records to confirm correct position holdings.",
+        "Correct NBIM position data if verified externally."
       ],
-      "potential_impact": "Incorrect position data can cascade into misreported dividend income, affecting client statements and compliance.",
-      "suggested_owner": "Data Management / Internal Portfolio Team",
+      "potential_impact": "Material misstatement of holdings could affect client reporting and internal risk assessments.",
+      "suggested_owner": "Portfolio Data and Reconciliation Team",
       "custodian_escalation_needed": false,
-      "urgency_note": "Immediate correction recommended to prevent further discrepancies."
+      "urgency_note": "High priority due to impact on client positions and reporting accuracy."
     },
     {
       "break_id": 5,
       "break_type": "GROSS_AMOUNT",
-      "event_key": "970456789",
+      "event_key": 970456789,
       "isin": "CH0038863350",
       "custodian": "CUST/UBSCH",
       "ex_date": "25.04.2025",
@@ -104,44 +104,44 @@
       "source": "internal_nbim_error",
       "class": "calculation_error",
       "which_system_is_wrong": "NBIM",
-      "reasoning": "Custodian reports a gross amount of 37,200 versus NBIM's 31,000, a difference of 6,200. The nearby net amount discrepancy of 4,030 amplifies this, indicating that NBIM may have an incorrect gross calculation or application of withholding tax. As custody data aligns with Swiss dividend conventions, the internal calculation appears the likely error.",
+      "reasoning": "Custodian reports a custody_amount of 37,200, while NBIM shows 31,000. As the gross amount is derived from the custody value, the discrepancy suggests internal calculation or data entry issues within NBIM\u2019s dividend processing, not necessarily external data failure.",
       "next_steps": [
-        "Review NBIM\u2019s calculation modules for gross dividend and tax application logic.",
-        "Cross-check with market dividend data and custodian reports to isolate the error.",
-        "Update internal calculation parameters to rectify gross amount calculation."
+        "Audit NBIM\u2019s gross dividend calculation process for this record.",
+        "Verify the custody data received from custodian and recalculate internally.",
+        "Implement correction in NBIM system if error is confirmed."
       ],
-      "potential_impact": "Potential misstatement of gross dividend income and withholding taxes, leading to discrepancies in income reports.",
-      "suggested_owner": "Finance & Calculation Team",
+      "potential_impact": "Potential misallocation of dividend income affecting reporting and client statements.",
+      "suggested_owner": "Dividend Processing & Data Systems Team",
       "custodian_escalation_needed": false,
-      "urgency_note": "Address at next reconciliation cycle, as impact is moderate."
+      "urgency_note": "Address promptly to ensure accurate dividend accruals."
     },
     {
       "break_id": 6,
       "break_type": "NET_AMOUNT",
-      "event_key": "970456789",
+      "event_key": 970456789,
       "isin": "CH0038863350",
       "custodian": "CUST/UBSCH",
       "ex_date": "25.04.2025",
       "pay_date": "29.04.2025",
       "severity": "MEDIUM",
       "source": "internal_nbim_error",
-      "class": "data_quality",
+      "class": "calculation_error",
       "which_system_is_wrong": "NBIM",
-      "reasoning": "The NBIM net amount (20,150) versus custody (24,180) indicates a mismatch. Given the Swiss context and correct withholding rate application, this suggests an internal data entry or calculation error within NBIM\u2019s dividend processing system.",
+      "reasoning": "NBIM\u2019s reported net amount (20,150) differs from custodian\u2019s (24,180). Given the previous amount discrepancy, this points to internal calculation or data entry issues within NBIM\u2019s dividend net calculation.",
       "next_steps": [
-        "Audit the internal dividend accrual and payment calculations for this security.",
-        "Rectify the incorrect net amount and ensure alignment with custodian records.",
-        "Implement verification checks in NBIM to prevent recurrence."
+        "Review internal dividend net calculation procedures.",
+        "Compare with custodian payout and verify correct net amount.",
+        "Apply necessary corrections to internal records."
       ],
-      "potential_impact": "Low to medium impact on reporting accuracy but important for correct income recognition.",
-      "suggested_owner": "Internal Data & Reconciliation Team",
+      "potential_impact": "Inaccurate client dividend statements and impact on cash forecasting.",
+      "suggested_owner": "Dividend Calculation & Data Integrity Team",
       "custodian_escalation_needed": false,
-      "urgency_note": "Correct as soon as possible to enhance data integrity."
+      "urgency_note": "Address soon to prevent ongoing discrepancies."
     },
     {
       "break_id": 7,
       "break_type": "TAX",
-      "event_key": "970456789",
+      "event_key": 970456789,
       "isin": "CH0038863350",
       "custodian": "CUST/UBSCH",
       "ex_date": "25.04.2025",
@@ -150,36 +150,37 @@
       "source": "external_custodian_error",
       "class": "data_quality",
       "which_system_is_wrong": "CUSTODY",
-      "reasoning": "Custodian reports a tax amount (13,020) at a rate of 35%, matching Swiss withholding tax standards. NBIM's tax report also reflects this rate, indicating the custodian provided correct data. The small difference of 2,170 suggests rounding or reporting variances typical of market practice.",
+      "reasoning": "Custodian reports a custody_tax of 13,020 with a 35% rate, matching Swiss standard withholding tax. The tax rates align with market practice for Swiss dividends, indicating the custodian\u2019s data is authoritative and correct. NBIM records reflect consistent tax amounts.",
       "next_steps": [
-        "Confirm the withholding rate with Swiss tax authorities and custodian documentation.",
-        "No immediate action needed unless discrepancies widen upon review.",
-        "Maintain monitoring for future dividend payments for consistency."
+        "Confirm the custody tax deduction with the custodian and relevant tax authorities.",
+        "Ensure internal tax records in NBIM reflect this standard rate correctly.",
+        "Adjust any internal records if discrepancies are identified."
       ],
-      "potential_impact": "Minimal; standard tax reporting aligned with market regulations.",
-      "suggested_owner": "Tax & Compliance Team",
+      "potential_impact": "Minimal \u2013 aligns with market practices, and accurate tax deduction is crucial for compliance.",
+      "suggested_owner": "Tax Compliance Team",
       "custodian_escalation_needed": false,
-      "urgency_note": "Routine check; no urgent action needed."
+      "urgency_note": "Routine review; no immediate concern."
     }
   ],
   "summary": {
     "total_breaks": 7,
-    "critical_count": 1,
+    "critical_count": 0,
     "high_count": 2,
-    "medium_count": 2,
+    "medium_count": 3,
     "low_count": 2,
     "internal_nbim_errors": 3,
-    "external_custodian_errors": 4,
+    "external_custodian_errors": 3,
     "unclear": 1,
     "by_custodian": {
-      "CUST/HSBCKR": 2,
-      "CUST/UBSCH": 5
+      "CUST/HSBCKR": 3,
+      "CUST/UBSCH": 4
     },
     "primary_issues": [
-      "Custodian data inaccuracies (amounts, tax rates)",
-      "Internal position and amount mismatches"
+      "Data quality inconsistencies in custody amounts and positions",
+      "Tax rate and amount discrepancies",
+      "Timing mismatches"
     ],
-    "recommended_priority": "Address custodian reporting issues first, particularly the custody amount and tax data errors affecting large amounts.",
+    "recommended_priority": "Address custody amount and position mismatches first, then review tax data discrepancies",
     "custodians_to_contact": [
       "CUST/HSBCKR",
       "CUST/UBSCH"

@@ -6,7 +6,7 @@
       "auto_fixable": false,
       "fix_method": null,
       "fix_confidence": "low",
-      "human_reason": "Policy violation due to incorrect custodian reporting; requires validation and correction by human team.",
+      "human_reason": "Policy violation due to custodian's custody amount exceeding expected treaty rate; requires policy verification and potential manual correction.",
       "priority": "critical",
       "original_auto_fixable": false,
       "safeguard_applied": false
@@ -17,8 +17,8 @@
       "auto_fixable": false,
       "fix_method": null,
       "fix_confidence": "low",
-      "human_reason": "Policy violation involving incorrect tax rate application; needs verification and adjustment by tax team.",
-      "priority": "high",
+      "human_reason": "Policy violation due to incorrect tax rate application; needs validation and manual adjustment.",
+      "priority": "critical",
       "original_auto_fixable": false,
       "safeguard_applied": false
     },
@@ -26,7 +26,7 @@
       "break_id": 3,
       "break_type": "PAY_DATE",
       "auto_fixable": false,
-      "fix_method": "Align internal system date with confirmed official pay date after validation.",
+      "fix_method": "Verify official corporate action notices and align internal records accordingly.",
       "fix_confidence": "high",
       "human_reason": "Uncertain classification requires review",
       "priority": "medium",
@@ -38,9 +38,9 @@
       "break_type": "NOMINAL_MISMATCH",
       "auto_fixable": false,
       "fix_method": null,
-      "fix_confidence": "low",
-      "human_reason": "Critical position data error; requires manual correction and verification in internal systems.",
-      "priority": "critical",
+      "fix_confidence": "medium",
+      "human_reason": "Internal data quality issue; requires manual review of position records and correction.",
+      "priority": "high",
       "original_auto_fixable": false,
       "safeguard_applied": false
     },
@@ -50,7 +50,7 @@
       "auto_fixable": false,
       "fix_method": null,
       "fix_confidence": "medium",
-      "human_reason": "Calculation discrepancy within internal systems; needs review and correction by finance team.",
+      "human_reason": "Internal calculation discrepancy; needs manual audit and correction.",
       "priority": "high",
       "original_auto_fixable": false,
       "safeguard_applied": false
@@ -61,7 +61,7 @@
       "auto_fixable": false,
       "fix_method": null,
       "fix_confidence": "medium",
-      "human_reason": "Mismatch in net amount due to internal data error; requires manual correction.",
+      "human_reason": "Internal calculation error; requires manual review and adjustment.",
       "priority": "high",
       "original_auto_fixable": false,
       "safeguard_applied": false
@@ -70,10 +70,10 @@
       "break_id": 7,
       "break_type": "TAX",
       "auto_fixable": false,
-      "fix_method": "Verify and confirm correct tax rate; no change needed if aligned with Swiss standards.",
+      "fix_method": "Confirm tax deduction with custodian and update internal records to match.",
       "fix_confidence": "high",
       "human_reason": "Custodian errors require escalation",
-      "priority": "low",
+      "priority": "medium",
       "original_auto_fixable": true,
       "safeguard_applied": true
     }

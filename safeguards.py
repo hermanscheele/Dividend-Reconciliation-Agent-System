@@ -27,7 +27,7 @@ def apply_safeguards(resolutions, breaks, diagnosis):
             override_count += 1
             continue
         
-        # RULE 2: Large amounts (raised to $200K for demo)
+        # RULE 2: Large amounts (raised to $200K)
         amount = abs(break_data.get("difference", 0))
         if amount > 200000:
             resolution["auto_fixable"] = False

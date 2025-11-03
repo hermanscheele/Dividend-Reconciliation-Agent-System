@@ -1,9 +1,9 @@
 Dividend reconciliation: ISIN CH0038863350
-Please review and correct the nominal value reported for the dividend event on 25.04.2025. The current custody nominal value of 30,000 differs from NBIM's 15,000, indicating a potential internal data entry error. Confirm the accurate nominal amount and update your records accordingly.
+The custodian reports a Swiss withholding tax of 35%, which aligns with standard Swiss practice. Please confirm the custody tax deduction with relevant authorities and ensure internal tax records reflect this rate accurately. No correction is necessary unless discrepancies are found.
 
 Dividend reconciliation: ISIN CH0038863350
-Please verify and correct the gross amount reported for the dividend event on 25.04.2025. The custodian reports 37,200, while NBIM's data indicates 31,000, suggesting a calculation discrepancy. Confirm the correct gross amount and update your records to ensure accurate reporting.
+The custodian reports a custody tax of 35%, consistent with Swiss market practice. Please confirm the tax deduction with the relevant authorities. No correction is required unless discrepancies are identified.
 
 Dividend reconciliation: ISIN CH0038863350
-The discrepancy in net amount for the dividend event on 25.04.2025, with custodian reporting 24,180 and NBIM reporting 20,150, requires clarification. Please confirm the correct net amount and provide supporting documentation or explanation for the variance.
+The custodian reports a custody tax of 35%, which is consistent with standard Swiss withholding tax practice. Please confirm the tax deduction with the relevant authorities. No correction is necessary unless discrepancies are found.
 

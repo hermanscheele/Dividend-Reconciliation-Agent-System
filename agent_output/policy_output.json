@@ -2,56 +2,56 @@
   "evaluations": [
     {
       "break_id": 1,
-      "policy_name": "South Korea Treaty Rate",
+      "policy_name": "South Korea Dividend Tax",
       "policy_violation": "yes",
-      "reason": "Custodian reported a 20% withholding tax instead of the correct treaty rate of 15%.",
-      "action_needed": "Correct withholding to apply 15% treaty rate with valid documentation."
+      "reason": "Custodian's custody amount exceeds the expected 15% treaty rate, indicating possible breach of treaty rate application policies.",
+      "action_needed": "Verify custodian data and ensure treaty rate of 15% is applied with valid documentation."
     },
     {
       "break_id": 2,
-      "policy_name": "South Korea Treaty Rate",
+      "policy_name": "South Korea Dividend Tax",
       "policy_violation": "yes",
-      "reason": "Custodian applied a 20% rate while NBIM's data suggests a 22% rate; inconsistent with treaty policy.",
-      "action_needed": "Verify and adjust the tax rate to align with 15% treaty rate with valid certificate."
+      "reason": "Custodian's custody tax (1,805,000) with 20% rate exceeds NBIM-recorded tax (1,985,500) at 22%, indicating incorrect rate application.",
+      "action_needed": "Validate tax source and correct any rate application misalignment."
     },
     {
       "break_id": 3,
       "policy_name": "None",
       "policy_violation": "no",
-      "reason": "Payment date discrepancy is within the \u00b11 business day tolerance and is likely operational.",
+      "reason": "Discrepancy in pay date is minor and within acceptable variation, not a policy violation.",
       "action_needed": "None"
     },
     {
       "break_id": 4,
       "policy_name": "None",
-      "policy_violation": "yes",
-      "reason": "Nominal mismatch (position error) is critical and violates position data integrity policy.",
-      "action_needed": "Immediately correct the position data in NBIM systems."
+      "policy_violation": "no",
+      "reason": "Position mismatch is an internal data quality issue, not a policy violation but requires correction.",
+      "action_needed": "None"
     },
     {
       "break_id": 5,
       "policy_name": "None",
-      "policy_violation": "yes",
-      "reason": "Gross amount discrepancy exceeds the 0.01 threshold, indicating a calculation error within NBIM.",
-      "action_needed": "Review and rectify gross amount calculation logic."
+      "policy_violation": "no",
+      "reason": "Discrepancies in gross amount are likely internal calculation errors, not policy violations.",
+      "action_needed": "None"
     },
     {
       "break_id": 6,
       "policy_name": "None",
-      "policy_violation": "yes",
-      "reason": "Net amount mismatch does not derive mathematically from gross and tax, violating data validation policies.",
-      "action_needed": "Correct the internal NBIM net amount record."
+      "policy_violation": "no",
+      "reason": "Difference in net amount appears to be due to internal calculation error, not a policy breach.",
+      "action_needed": "None"
     },
     {
       "break_id": 7,
-      "policy_name": "Swiss Treaty Rate",
+      "policy_name": "Swiss Dividend Tax",
       "policy_violation": "no",
-      "reason": "Custodian provided correct tax rate aligning with Swiss treaty standards; no violation.",
+      "reason": "Tax reported aligns with Swiss treaty rates and standard withholding practices, no violation detected.",
       "action_needed": "None"
     }
   ],
   "summary": {
     "total_evaluated": 7,
-    "violations": 6
+    "violations": 2
   }
 }
