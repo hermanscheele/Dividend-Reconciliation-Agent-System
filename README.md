@@ -23,7 +23,6 @@ agent = Agent(market_model, break_model, policy_model, remediation_model, remedi
 
 ### **Agent 1: Break Detection** (Deterministic)
 **What it does:** Compares NBIM data vs Custodian data  
-**Output:** 7 breaks detected (tax, amounts, dates, positions)
 
 ```python
 breaks = agent.detect_breaks(nbim_file, custody_file)
@@ -33,7 +32,6 @@ breaks = agent.detect_breaks(nbim_file, custody_file)
 
 ### **Agent 2: Market Validation** (LLM + Web Search)
 **What it does:** Searches public sources for official market data  
-**Output:** External verification with sources 
 
 ```python
 market_facts = agent.market_validation(breaks, model="gpt-4o-nano")
@@ -43,7 +41,6 @@ market_facts = agent.market_validation(breaks, model="gpt-4o-nano")
 
 ### **Agent 3: Diagnosis** (LLM)
 **What it does:** Classifies if error is internal (NBIM) or external (custodian)  
-**Output:** Source determination + severity
 
 ```python
 diagnosis = agent.diagnose_breaks(breaks, market_facts, model="gpt-4.1-nano")
@@ -53,7 +50,6 @@ diagnosis = agent.diagnose_breaks(breaks, market_facts, model="gpt-4.1-nano")
 
 ### **Agent 4: Policy Compliance** (LLM)
 **What it does:** Checks breaks against tax treaties and company policy  
-**Output:** Policy violations identified
 
 ```python
 policy_eval = agent.policy_evaluation(breaks, diagnosis, POLICY_TEXT, model="gpt-4.1-nano")
@@ -64,13 +60,18 @@ policy_eval = agent.policy_evaluation(breaks, diagnosis, POLICY_TEXT, model="gpt
 
 ### **Agent 5: Auto-Resolution** (LLM + Deterministic Safeguards)
 **What it does:** Decides if break can be auto-fixed or needs human review  
-**Output:** Safe automation decisions
 
 ```python
 resolution = agent.auto_resolutions(breaks, diagnosis, policy_eval, model="gpt-4.1-nano")
 ```
 
 
+### **Agent 6: Remediation** (LLM)
+**What it does:** Drafts messages and sends remediation suggestions to relevant Custodies outbox
+
+```python
+resolution = agent.auto_resolutions(breaks, diagnosis, policy_eval, model="gpt-4.1-nano")
+```
 
 ## 🚀 Quick Start
 
