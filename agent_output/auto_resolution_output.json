@@ -1,0 +1,91 @@
+{
+  "resolutions": [
+    {
+      "break_id": 1,
+      "break_type": "NET_AMOUNT",
+      "auto_fixable": false,
+      "fix_method": null,
+      "fix_confidence": "low",
+      "human_reason": "Policy violation due to incorrect custodian reporting; requires manual correction and verification.",
+      "priority": "high",
+      "original_auto_fixable": false,
+      "safeguard_applied": false
+    },
+    {
+      "break_id": 2,
+      "break_type": "TAX",
+      "auto_fixable": false,
+      "fix_method": null,
+      "fix_confidence": "medium",
+      "human_reason": "Policy violation with incorrect tax rate application; needs manual review and correction.",
+      "priority": "high",
+      "original_auto_fixable": false,
+      "safeguard_applied": false
+    },
+    {
+      "break_id": 3,
+      "break_type": "PAY_DATE",
+      "auto_fixable": false,
+      "fix_method": "Align internal payment date with market expected date or update system to reflect custodian reported date after verification.",
+      "fix_confidence": "high",
+      "human_reason": "Custodian errors require escalation",
+      "priority": "medium",
+      "original_auto_fixable": true,
+      "safeguard_applied": true
+    },
+    {
+      "break_id": 4,
+      "break_type": "NOMINAL_MISMATCH",
+      "auto_fixable": false,
+      "fix_method": null,
+      "fix_confidence": "low",
+      "human_reason": "Material position data discrepancy indicating internal system error; requires manual correction and reconciliation.",
+      "priority": "critical",
+      "original_auto_fixable": false,
+      "safeguard_applied": false
+    },
+    {
+      "break_id": 5,
+      "break_type": "GROSS_AMOUNT",
+      "auto_fixable": false,
+      "fix_method": null,
+      "fix_confidence": "low",
+      "human_reason": "Unclear whether discrepancy is internal or external; needs manual investigation and confirmation.",
+      "priority": "high",
+      "original_auto_fixable": false,
+      "safeguard_applied": false
+    },
+    {
+      "break_id": 6,
+      "break_type": "TAX",
+      "auto_fixable": false,
+      "fix_method": "Update NBIM tax data to match custodian reported amount after verification.",
+      "fix_confidence": "high",
+      "human_reason": "Custodian errors require escalation",
+      "priority": "medium",
+      "original_auto_fixable": true,
+      "safeguard_applied": true
+    },
+    {
+      "break_id": 7,
+      "break_type": "ERROR",
+      "auto_fixable": false,
+      "fix_method": null,
+      "human_reason": "Parsing error and lack of clear internal or external discrepancy; requires manual review and clarification.",
+      "priority": "high",
+      "original_auto_fixable": false,
+      "safeguard_applied": false
+    }
+  ],
+  "summary": {
+    "auto_fixable": 0,
+    "human_required": 7,
+    "safeguard_overrides": 2
+  },
+  "metadata": {
+    "total_breaks": 7,
+    "resolutions_generated": 7,
+    "model_used": "gpt-4.1-nano",
+    "safeguards_applied": 2
+  }
+}

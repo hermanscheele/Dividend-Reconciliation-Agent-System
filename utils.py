@@ -3,13 +3,6 @@ import pandas as pd
 import json
 
 
-
-
-
-
-
-
-
 def load_dividend_events(path):
     df = pd.read_csv(path, sep=";")
     events = {}
@@ -23,70 +16,16 @@ def load_dividend_events(path):
     return events
 
 
-
-
 def write_json_file(data, agent):
     with open(f'agent_output/{agent}_output.json', 'w') as f:
         json.dump(data, f, indent=2)
 
 
-
-
-
-
-
-
-def parse_json_output(x):
-    if isinstance(x, dict):
-        return x
-    if not isinstance(x, str):
-        try: x = str(x)
-        except: return {"error": "bad_format", "raw": x}
-
-    try: return json.loads(x)
-    except: pass
-
-    start, end = x.find("{"), x.rfind("}")
-    if start != -1 and end > start:
-        try: return json.loads(x[start:end+1])
-        except: pass
-
-    return {"error":"no_json", "raw":x}
-
-
-
-
-def summarize_agent_output(raw):
-    data = parse_json_output(raw)
-
-    # If agent returned a "breaks" list (our use-case)
-    if isinstance(data, dict) and "breaks" in data:
-        if not data["breaks"]:
-            return "✅ No issues detected"
-        b = data["breaks"][0]  # just first break for simplicity
-        kind = b.get("kind", "Unknown")
-        reason = b.get("reason", b.get("why", "No reason given"))
-        return f"⚠️ {kind}: {reason}"
-
-    # If agent uses {status, kind}
-    if isinstance(data, dict):
-        status = data.get("status")
-        kind = data.get("kind")
-        reason = data.get("reason") or data.get("why")
-
-        if status == "ok" or kind == "NONE":
-            return "✅ No issues detected"
-        if status == "break" or kind:
-            return f"⚠️ {kind}: {reason if reason else ''}".strip()
-
-    # Otherwise fallback
-    return f"ℹ️ Raw agent output: {raw}"
-
-
-
-
-
-
+def write_to_outbox(data, custodian):
+    custodian = custodian.replace("/", "_")
+    with open(f"custody_outbox/{custodian}_msg.txt", "a", encoding="utf-8") as f:
+        f.write(f"{data.get('subject','')}\n")
+        f.write(f"{data.get('body','')}\n\n")
 
 
 def spinner(message="Working..."):
@@ -110,30 +49,3 @@ def spinner(message="Working..."):
         t.join()
 
     return stop
-
-
-
-
-
-def parse_json_output(x: str):
-    if not isinstance(x, str) or not x.strip():
-        return {"error": "empty_or_non_string_response", "raw": x}
-    # try direct
-    try:
-        return json.loads(x)
-    except Exception:
-        pass
-    # try to salvage first {...} block
-    s, e = x.find("{"), x.rfind("}")
-    if s != -1 and e > s:
-        try:
-            return json.loads(x[s:e+1])
-        except Exception:
-            pass
-    return {"error": "invalid_json", "raw": x[:500]}
-
-
-
-
-
-

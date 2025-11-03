@@ -1,7 +1,7 @@
 from openai import OpenAI
 import json
 from utils import spinner
-from sub_prompts import POLICY_CONTEXTUALIZER_PROMPT
+from prompts import POLICY_CONTEXTUALIZER_PROMPT
 
 
 client = OpenAI()

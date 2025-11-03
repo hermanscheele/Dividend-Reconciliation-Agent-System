@@ -166,6 +166,9 @@ def detect_breaks(nbim_file, custody_file, tolerance=0.01):
                 'nbim_date': str(nbim_pay.date())
             })
     
+    print("")
+    print(f"BREAKS DETECTED: {len(breaks)}")
+    
     return {
         'total': len(breaks),
         'breaks': breaks
