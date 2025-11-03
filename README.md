@@ -76,7 +76,7 @@ resolution = agent.auto_resolutions(breaks, diagnosis, policy_eval, model="gpt-4
 ## 🚀 Quick Start
 
 ```bash
-pip3 install openai pandas python-docx
+pip3 install openai pandas
 export OPENAI_API_KEY="key"
 
 python3 Agent.py
