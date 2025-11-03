@@ -12,7 +12,6 @@ class Agent:
 
     def __init__(self, market_model, break_model, policy_model, resolution_model, remediation_model, nbim_file, custody_file, policy):
         
-
         self.client = OpenAI()
 
         self.market_model = market_model
